@@ -1,0 +1,56 @@
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      {{p.subject}}
+    </div>
+
+    <div class="post-date">
+      {{p.created.strftime("%b %d, %Y")}}
+    </div>
+  
+    {% if not username == p.author %}
+    <div class="post-like">
+      <a href="/blog/{{p.key().id()}}/like">
+        ({{p.likes_count}}) 
+        {% if p.like %}
+          Unlike
+        {% else %}
+          Like
+        {% endif %}
+      </a>
+    </div>
+    {% endif %}
+  
+    {% if username == p.author %}
+      <div class="post-edit">
+        <a href="/blog/{{p.key().id()}}/edit">Edit</a>
+      </div>
+
+      <div class="post-delete">
+        <a href="/blog/{{p.key().id()}}/delete">Delete</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="post-content">
+    {{p._render_text | safe}}
+  </div>
+
+  <div class="post-comments">
+    <h3>Comments</h3>
+    <div class="comment-create">
+      <form method="POST" action="/blog/{{p.key().id()}}/comment/create">
+        <label for="comment_content">Add Comment</label>
+        <input type="text" name="comment_content" id="comment_content" />
+        <input type="submit" />
+      </form>
+    </div>
+    
+    <div class="comments-list">
+    {% for c in comments %}
+      {{ c.render(username) | safe }}
+      <br><br>
+    {% endfor %}
+    </div>
+  </div>
+</div>

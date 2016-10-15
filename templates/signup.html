@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="POST">
+	<div>
+		<label for="username">
+			Username
+			<input type="text" value="{{username}}" name="username" placeholder="Username" />
+		</label>
+		{{ valid_username }}
+		{% if valid_username == False %}
+			<span class="error">Invalid Username</span>
+		{% endif %}
+		{% if username_dublicate == True %}
+			<span class="error">Username already exists. <a href="/login">Login</a></span>
+		{% endif %}
+	</div>
+	
+	<div>
+		<label for="password">
+			Password
+			<input type="password" name="password" placeholder="Password" />
+		</label>
+		{{ valid_password }}
+		{% if valid_password == False %}
+			<span class="error">Invalid Password</span>
+		{% endif %}
+	</div>
+	
+	<div>
+		<label for="verify">
+			Verify password
+			<input type="password" name="verify" placeholder="Verify password" />
+		</label>
+		{{ valid_verify }}
+		{% if valid_verify == False %}
+			<span class="error">Invalid Verify</span>
+		{% endif %}
+	</div>
+	
+	<div>
+		<label for="email">
+			E-Mail
+			<input type="text" value="{{email}}" name="email" placeholder="E-Mail" />
+		</label>
+		{{ valid_email }}
+		{% if valid_email == False %}
+			<span class="error">Invalid E-Mail</span>
+		{% endif %}
+	</div>
+
+	<input type="submit" />
+</form>
+{% endblock %}

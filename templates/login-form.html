@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="/signup">Signup</a>
+<form method="POST">
+	<div>
+		<label for="username">
+			Username
+			<input type="text" value="{{username}}" name="username" placeholder="Username" />
+		</label>
+		{{ valid_username }}
+		{% if valid_username == False %}
+			<span class="error">Invalid Username</span>
+		{% endif %}
+	</div>
+	
+	<div>
+		<label for="password">
+			Password
+			<input type="password" name="password" placeholder="Password" />
+		</label>
+		{{ valid_password }}
+		{% if valid_password == False %}
+			<span class="error">Invalid Password</span>
+		{% endif %}
+	</div>
+
+	<input type="submit" />
+</form>
+{% endblock %}

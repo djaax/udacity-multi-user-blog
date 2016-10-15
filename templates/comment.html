@@ -1,0 +1,18 @@
+<div class="comment">
+	<div class="comment-author">
+		Author: {{c.author}}
+	</div>
+
+	<div class="comment-date">
+		Created: {{c.created.strftime("%b %d, %Y")}}
+	</div>
+
+	{% if username == c.author %}
+		<a href="/blog/comment/{{c.key().id()}}/delete">Delete</a>
+		<a href="/blog/comment/{{c.key().id()}}/edit">Edit</a>
+	{% endif %}
+	
+	<div class="comment-content">
+		{{c._render_text | safe}}
+	</div>
+</div>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit Post</h2>
+    <a href="/blog/{{c.post_id}}">Back to post</a>
+    <div class="comment">	
+		<div class="comment-author">
+			{{c.author}}
+		</div>
+
+		<div class="comment-date">
+			{{c.created.strftime("%b %d, %Y")}}
+		</div>
+		
+		<div class="comment-content-edit">
+			<form method="POST">
+				<input type="text" id="comment_content" name="comment_content" value="{{c.content}}"/>
+				<input type="submit" />
+			</form>
+		</div>
+	</div>
+{% endblock %}
